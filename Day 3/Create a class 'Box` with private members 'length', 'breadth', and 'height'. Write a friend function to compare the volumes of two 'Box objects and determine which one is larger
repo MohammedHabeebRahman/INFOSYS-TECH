@@ -1,0 +1,40 @@
+#include <iostream>
+
+class Box {
+private:
+    int length, breadth, height;
+
+public:
+    Box(int l, int b, int h) : length(l), breadth(b), height(h) {}
+
+    int volume() const {
+        return length * breadth * height;
+    }
+
+    friend void compareVolume(const Box& box1, const Box& box2);
+};
+
+void compareVolume(const Box& box1, const Box& box2) {
+    int volume1 = box1.volume();
+    int volume2 = box2.volume();
+
+    std::cout << "Box 1 Volume: " << volume1 << std::endl;
+    std::cout << "Box 2 Volume: " << volume2 << std::endl;
+
+    if (volume1 > volume2) {
+        std::cout << "Larger Box: Box 1" << std::endl;
+    } else if (volume2 > volume1) {
+        std::cout << "Larger Box: Box 2" << std::endl;
+    } else {
+        std::cout << "Both Boxes have equal volume." << std::endl;
+    }
+}
+
+int main() {
+    Box box1(2, 3, 4);
+    Box box2(3, 3, 3);
+
+    compareVolume(box1, box2);
+
+    return 0;
+}
