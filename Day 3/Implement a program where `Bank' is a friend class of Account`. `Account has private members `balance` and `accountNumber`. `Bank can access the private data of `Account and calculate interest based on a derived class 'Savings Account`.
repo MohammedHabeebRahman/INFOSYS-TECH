@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+class Account {
+private:
+    double balance;
+    int accountNumber;
+
+public:
+    Account(double bal, int accNum) : balance(bal), accountNumber(accNum) {}
+
+    friend class Bank;
+};
+
+class Bank {
+public:
+    void calculateInterest(Account &acc, double interestRate) {
+        double interest = acc.balance * (interestRate / 100);
+        cout << "Account Balance: " << acc.balance << endl;
+        cout << "Interest Earned: " << interest << endl;
+    }
+};
+
+class SavingsAccount : public Account {
+public:
+    SavingsAccount(double bal, int accNum) : Account(bal, accNum) {}
+};
+
+int main() {
+    double balance;
+    int accountNumber;
+    double interestRate;
+
+    cout << "Balance: ";
+    cin >> balance;
+    cout << "Interest Rate: ";
+    cin >> interestRate;
+
+    SavingsAccount savingsAcc(balance, 12345);
+    Bank bank;
+    bank.calculateInterest(savingsAcc, interestRate);
+
+    return 0;
+}
