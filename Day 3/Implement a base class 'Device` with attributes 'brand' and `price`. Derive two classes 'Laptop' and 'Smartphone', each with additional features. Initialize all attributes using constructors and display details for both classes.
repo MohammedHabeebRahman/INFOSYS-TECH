@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Device {
+protected:
+    string brand;
+    double price;
+
+public:
+    Device(string b, double p) : brand(b), price(p) {}
+
+    void displayDetails() {
+        cout << "Device: " << brand << ", Price: $" << price << endl;
+    }
+};
+
+class Laptop : public Device {
+public:
+    Laptop(string b, double p) : Device(b, p) {}
+};
+
+class Smartphone : public Device {
+public:
+    Smartphone(string b, double p) : Device(b, p) {}
+};
+
+int main() {
+    Laptop laptop("Dell", 1000);
+    Smartphone smartphone("Samsung", 800);
+
+    laptop.displayDetails();
+    smartphone.displayDetails();
+
+    return 0;
+}
