@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cmath>
+
+class Circle {
+private:
+    double radius;
+
+public:
+    Circle(double r) : radius(r) {}
+
+    friend void calculateArea(const Circle& c);
+};
+
+void calculateArea(const Circle& c) {
+    double area = M_PI * c.radius * c.radius;
+    std::cout << "Area of Circle: " << area << std::endl;
+}
+
+int main() {
+    double r;
+    std::cout << "Radius: ";
+    std::cin >> r;
+
+    Circle c(r);
+    calculateArea(c);
+
+    return 0;
+}
