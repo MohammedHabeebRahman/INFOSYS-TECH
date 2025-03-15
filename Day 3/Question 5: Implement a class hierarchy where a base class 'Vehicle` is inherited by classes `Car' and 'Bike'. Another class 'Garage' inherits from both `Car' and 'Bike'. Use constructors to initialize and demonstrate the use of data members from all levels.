@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+
+class Vehicle {
+protected:
+    std::string vehicleName;
+
+public:
+    Vehicle(const std::string& name) : vehicleName(name) {}
+
+    void displayVehicle() {
+        std::cout << "Vehicle: " << vehicleName << std::endl;
+    }
+};
+
+class Car : public Vehicle {
+protected:
+    std::string carModel;
+
+public:
+    Car(const std::string& vName, const std::string& model) : Vehicle(vName), carModel(model) {}
+
+    void displayCar() {
+        std::cout << "Car: " << carModel << std::endl;
+    }
+};
+
+class Bike : public Vehicle {
+protected:
+    std::string bikeModel;
+
+public:
+    Bike(const std::string& vName, const std::string& model) : Vehicle(vName), bikeModel(model) {}
+
+    void displayBike() {
+        std::cout << "Bike: " << bikeModel << std::endl;
+    }
+};
+
+class Garage : public Car, public Bike {
+public:
+    Garage(const std::string& vName, const std::string& carModel, const std::string& bikeModel)
+        : Car(vName, carModel), Bike(vName, bikeModel) {}
+
+    void displayGarage() {
+        Car::displayVehicle();  // Use Car's inherited displayVehicle() to avoid ambiguity
+        displayCar();
+        displayBike();
+    }
+};
+
+int main() {
+    std::string vehicleName = "Tesla";
+    std::string carModel = "Model S";
+    std::string bikeModel = "Kawasaki Ninja";
+
+    Garage garage(vehicleName, carModel, bikeModel);
+    garage.displayGarage();
+
+    return 0;
+}
