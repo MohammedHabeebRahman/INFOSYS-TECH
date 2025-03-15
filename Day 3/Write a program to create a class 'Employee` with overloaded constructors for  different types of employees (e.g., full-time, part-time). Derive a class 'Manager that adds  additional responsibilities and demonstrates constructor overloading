@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Employee {
+protected:
+    string name;
+    string type;
+
+public:
+    Employee(string empName) : name(empName), type("Full-Time") {}
+    Employee(string empName, string empType) : name(empName), type(empType) {}
+
+    void displayEmployeeInfo() {
+        cout << "Employee Name: " << name << ", Type: " << type << endl;
+    }
+};
+
+class Manager : public Employee {
+private:
+    string responsibility;
+
+public:
+    Manager(string empName, string empType, string resp) 
+        : Employee(empName, empType), responsibility(resp) {}
+
+    void displayManagerInfo() {
+        displayEmployeeInfo();
+        cout << "Responsibility: " << responsibility << endl;
+    }
+};
+
+int main() {
+    Employee emp1("Alice");
+    Employee emp2("Bob", "Part-Time");
+
+    emp1.displayEmployeeInfo();
+    emp2.displayEmployeeInfo();
+
+    Manager mgr("Eve", "Full-Time", "Project Management");
+    mgr.displayManagerInfo();
+
+    return 0;
+}
