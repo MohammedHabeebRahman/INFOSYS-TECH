@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+private:
+    double length;
+    double breadth;
+
+public:
+    Rectangle(double len, double bre) : length(len), breadth(bre) {}
+
+    friend class AreaCalculator;
+};
+
+class AreaCalculator {
+public:
+    double calculateArea(const Rectangle &rect) {
+        return rect.length * rect.breadth;
+    }
+};
+
+int main() {
+    double length = 5;
+    double breadth = 10;
+
+    Rectangle rect(length, breadth);
+    AreaCalculator calculator;
+
+    cout << "Area of Rectangle: " << calculator.calculateArea(rect) << endl;
+
+    return 0;
+}
