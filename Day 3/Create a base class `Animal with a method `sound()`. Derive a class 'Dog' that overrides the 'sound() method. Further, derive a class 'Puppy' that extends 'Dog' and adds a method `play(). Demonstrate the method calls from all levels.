@@ -1,0 +1,35 @@
+#include <iostream>
+
+class Animal {
+public:
+    void sound() {
+        std::cout << "Animal Sound: Generic Animal Sound" << std::endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void sound() override {
+        std::cout << "Dog Sound: Woof Woof" << std::endl;
+    }
+};
+
+class Puppy : public Dog {
+public:
+    void play() {
+        std::cout << "Puppy is playing!" << std::endl;
+    }
+};
+
+int main() {
+    Animal animal;
+    Dog dog;
+    Puppy puppy;
+
+    animal.sound();
+    dog.sound();
+    puppy.sound();
+    puppy.play();
+
+    return 0;
+}
